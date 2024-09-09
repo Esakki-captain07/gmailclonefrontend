@@ -95,12 +95,10 @@ useEffect(() => {
         }
       });
   
-        toast.success(response.data || 'Email starred successfully');
+        toast.success('Updated successfully');
         setEmailData(prevEmails => 
-          prevEmails.map(email => 
-              email._id === id ? { ...email, starred: !email.starred } : email
-          )
-      );
+          prevEmails.filter(email => email._id !== id)
+        );
       
     } catch (error) {
       toast.error(error.message || 'Failed to star email');
@@ -119,7 +117,7 @@ useEffect(() => {
                     emailData.map((email) => (
                         <div key={email._id} className="message-item" onClick={() => handleEmailClick(email._id)}>
                             <div className="message-header">
-                            <button className='trash fill-star' onClick={(e) => { e.stopPropagation(); handleMoveToStared(email._id); }}>
+                            <button className='trash-star fill-star' onClick={(e) => { e.stopPropagation(); handleMoveToStared(email._id); }}>
                      <i className={`bi ${email.starred ? 'bi-star' : 'bi-star-fill'}`}></i>
                   </button>
                                 <div className="message-email">To: {email.recipients}</div>

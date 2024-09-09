@@ -63,10 +63,10 @@ function Trash() {
             trashEmails.map((email) => (
               <div key={email._id} className='message-item'>
                 <div className='message-header'>
-                  <div className='trash-email-recipients'>To: {email.recipients}</div>
-                  <div className='trash-email-subject'>{email.subject}</div>
+                  <div className='message-email'>To: {email.recipients}</div>
+                  <div className='message-subject'>{email.subject}</div>
                   <button className='trash' onClick={() => handleDelete(email._id)}><i className="bi bi-trash"></i></button>
-                  <div className='trash-email-date'>{email.date}</div>
+                  <div className='message-date'>{email.date}</div>
 
                 </div>
               </div>

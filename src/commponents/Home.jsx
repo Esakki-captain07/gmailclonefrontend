@@ -89,7 +89,8 @@ function Home() {
         }
       });
       toast.success("Email moved to trash successfully.");
-      setMailData(mailData.filter(email => email._id !== id));
+      setMailData((prevMails) => prevMails.filter((email) => email._id !== id));
+    setFilteredEmails((prevFilteredEmails) => prevFilteredEmails.filter((email) => email._id !== id));
     } catch (error) {
       toast.error(error.message || "Failed to move email to trash.");
     }
