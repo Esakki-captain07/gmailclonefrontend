@@ -15,8 +15,6 @@ function GetSendMail() {
     isComposeOpen,
     toggleSidebar,
     toggleCompose,
-    handleMoveToTrash,
-    handleMoveToStared,
   } = useContext(AppContext);
 
   const navigate = useNavigate();
@@ -44,6 +42,40 @@ function GetSendMail() {
       toast.error(error.message || "Internal Server Error");
     }
   };
+
+  const handleMoveToTrash = async (id) => {
+    try {
+      await AxiosService.put(`${ApiRoutes.MOVE_TO_TRASH.path}/${id}`, {}, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      toast.success("Email moved to trash successfully.");
+      setEmailData(emailData.filter(email => email._id !== id));
+    } catch (error) {
+      toast.error(error.message || "Failed to move email to trash.");
+    }
+  };
+  const handleMoveToStared = async (id) => {
+    try {
+      const response = await AxiosService.put(`${ApiRoutes.UPDATE_STARED.path}/${id}`, {
+        starred: true 
+      }, {
+        headers: { 
+          Authorization: `Bearer ${localStorage.getItem('token')}` 
+        }
+      });
+  
+        toast.success('Updated successfully');
+        setEmailData(prevEmails => 
+          prevEmails.filter(email => email._id !== id)
+        );
+      
+    } catch (error) {
+      toast.error(error.message || 'Failed to star email');
+    }
+  };
+
 
   useEffect(() => {
     getData();

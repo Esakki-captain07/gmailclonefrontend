@@ -400,6 +400,11 @@ color: red;
     display: none;
   }
 
+  .compose-email{
+    width: 300px;
+    margin-left: 85px;
+  }
+
   .topbar-search-form {
     width: 100% !important;
   }
