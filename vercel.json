@@ -1,8 +1,8 @@
 {
     "rewrites":[
         {
-            "source":"/(.*)",
-            "destination":"intex.html"
+            "source": "/(.*)",
+            "destination": "/index.html"
         }
     ]
 }
